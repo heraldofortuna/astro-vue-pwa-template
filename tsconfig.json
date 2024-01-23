@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "types": ["astro/client"],
+    "baseUrl": ".",
+    "outDir": "./build",
+    "paths": {
+      "@component/*": ["src/module/components/*"],
+      "@layout/*": ["src/module/layouts/*"],
+      "@font/*": ["src/assets/fonts/*"],
+      "@style/*": ["src/assets/styles/*"],
+      "@img/*": ["src/assets/img/*"],
+      "@icon/*": ["src/assets/svg/icon/*"],
+      "@util/*": ["utils/*"],
+    },
+  },
+  "exclude": ["node_modules", "dist"],
+}

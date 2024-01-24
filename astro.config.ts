@@ -12,22 +12,23 @@ import { manifest, seoConfig } from './utils/seoConfig';
 
 export default defineConfig({
   site: seoConfig.baseURL,
-  integrations: [vue(), AstroPWA(), tailwind(), sitemap(), compress()],
-  vite: {
-    plugins: [
-      AstroPWA({
-        registerType: 'autoUpdate',
-        manifest,
-        workbox: {
-          globDirectory: 'dist',
-          globPatterns: [
-            '**/*.{js,css,svg,png,jpg,jpeg,gif,webp,woff,woff2,ttf,eot,ico}',
-          ],
-          // Don't fallback on document based (e.g. `/some-page`) requests
-          // This removes an errant console.log message from showing up.
-          navigateFallback: null,
-        },
-      }),
-    ],
-  },
+  integrations: [
+    vue(),
+    AstroPWA({
+      registerType: 'autoUpdate',
+      manifest,
+      workbox: {
+        globDirectory: 'dist',
+        globPatterns: [
+          '**/*.{js,css,svg,png,jpg,jpeg,gif,webp,woff,woff2,ttf,eot,ico}',
+        ],
+        // Don't fallback on document based (e.g. `/some-page`) requests
+        // This removes an errant console.log message from showing up.
+        navigateFallback: null,
+      },
+    }),
+    tailwind(),
+    sitemap(),
+    compress(),
+  ],
 });

@@ -1,6 +1,12 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
+  env: {
+    node: true,
+    browser: true,
+  },
+  extends: ['plugin:vue/vue3-essential'],
+  parser: 'vue-eslint-parser',
   parserOptions: {
+    parser: '@typescript-eslint/parser',
     ecmaVersion: 'latest',
     sourceType: 'module',
   },

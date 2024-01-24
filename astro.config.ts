@@ -12,7 +12,7 @@ export default defineConfig({
   integrations: [
     vue(),
     AstroPWA({
-      mode: 'development',
+      mode: 'production',
       base: '/',
       scope: '/',
       includeAssets: ['favicon.svg'],
@@ -45,7 +45,7 @@ export default defineConfig({
         globPatterns: ['**/*.{css,js,html,svg,png,ico,txt}'],
       },
       devOptions: {
-        enabled: true,
+        enabled: false,
         navigateFallbackAllowlist: [/^\//],
       },
       experimental: {

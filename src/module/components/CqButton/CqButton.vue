@@ -5,10 +5,8 @@
   </button>
 </template>
 
-<script lang="ts">
-  export default {
-    props: {
-      label: String,
-    },
-  };
+<script lang="ts" setup>
+  defineProps<{
+    label: string;
+  }>();
 </script>

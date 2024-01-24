@@ -1,59 +1,27 @@
 ---
-import { SEO, TwitterCardType } from 'astro-seo';
-import { seoConfig } from '@util/seoConfig';
+import { pwaInfo } from 'virtual:pwa-info';
 
-// Props
-export interface Props {
+interface Props {
   title: string;
-  ogTitle?: string;
-  description?: string;
-  image?: {
-    url: string;
-    alt: string;
-  };
-  disableIndexing?: boolean;
 }
 
-const {
-  title,
-  ogTitle,
-  description,
-  image,
-  disableIndexing = false,
-} = Astro.props as Props;
+const { title } = Astro.props;
 ---
 
 <html lang="en">
   <head>
-    <!-- SEO. -->
-    <SEO
-      title={title}
-      description={seoConfig.description || description}
-      noindex={disableIndexing}
-      nofollow={disableIndexing}
-      openGraph={{
-        basic: {
-          title: ogTitle || title,
-          type: 'website',
-          image: seoConfig.image.url || image.url,
-        },
-        image: {
-          width: seoConfig.image.width,
-          height: seoConfig.image.height,
-          alt: seoConfig.image.alt || image.alt,
-        },
-        optional: {
-          siteName: seoConfig.siteName,
-          description: seoConfig.description || description,
-        },
-      }}
-      twitter={{
-        card: seoConfig.twitter.card as TwitterCardType,
-      }}
-    />
     <!-- Global meta tags. -->
     <meta charset="utf-8" />
+    <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    <meta name="msapplication-TileColor" content="#30E130" />
+    <meta
+      name="msapplication-TileImage"
+      content="/favicons/favicon-144x144.png"
+    />
+    <meta name="theme-color" content="#30E130" />
 
     <!-- Favicons. -->
     <link
@@ -131,14 +99,7 @@ const {
       href="/favicons/favicon.ico"
     />
     <link rel="icon" type="image/x-icon" href="/favicons/favicon.ico" />
-    <meta name="msapplication-TileColor" content="#30E130" />
-    <meta
-      name="msapplication-TileImage"
-      content="/favicons/favicon-144x144.png"
-    />
-    <meta name="msapplication-config" content="/browserconfig.xml" />
     <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
-    <meta name="theme-color" content="#30E130" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -162,30 +123,26 @@ const {
     >
 
     <!-- Styles -->
-    <link rel="preload" href="/_astro/index.UhDpLpVY.css" as="style" />
+    <link rel="preload" href="/_astro/index.mnWaa6eK.css" as="style" />
     <link
       rel="stylesheet"
-      href="/_astro/index.UhDpLpVY.css"
+      href="/_astro/index.mnWaa6eK.css"
       media="print"
       onload="this.media='all'"
     />
     <noscript
-      ><link rel="stylesheet" href="/_astro/index.UhDpLpVY.css" /></noscript
+      ><link rel="stylesheet" href="/_astro/index.mnWaa6eK.css" /></noscript
     >
 
+    <!-- Title -->
+    <title>{title}</title>
+
     <!-- Service worker registration. -->
-    <script defer src="/registerSW.js"></script>
-    <link rel="manifest" href="/manifest.webmanifest" />
+    {pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
+    <script src="/src/pwa.ts"></script>
   </head>
 
-  <body class="font-lexend-deca h-screen flex flex-col w-full">
-    <main class="font-lexend-deca flex flex-1 flex-col h-[100%] w-full">
-      <slot />
-    </main>
-
-    <script>
-      // This is a hack to get vite-plugin-pwa to generate a sw.js file.
-      // Do not remove this script tag.
-    </script>
+  <body class="font-lexend-deca h-screen">
+    <slot />
   </body></html
 >

@@ -6,7 +6,11 @@
     "jsx": "preserve",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "types": ["astro/client"],
+    "types": [
+      "astro/client",
+      "vite-plugin-pwa/vanillajs",
+      "vite-plugin-pwa/info",
+    ],
     "baseUrl": ".",
     "outDir": "./build",
     "paths": {
@@ -18,4 +22,5 @@
     },
   },
   "exclude": ["node_modules", "dist"],
+  "extends": "astro/tsconfigs/strict",
 }

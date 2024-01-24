@@ -7,24 +7,49 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import compress from 'astro-compress';
 
-// Helper imports
-import { manifest, seoConfig } from './utils/seoConfig';
-
 export default defineConfig({
-  site: seoConfig.baseURL,
+  site: 'https://example.com',
   integrations: [
     vue(),
     AstroPWA({
+      mode: 'development',
+      base: '/',
+      scope: '/',
+      includeAssets: ['favicon.svg'],
       registerType: 'autoUpdate',
-      manifest,
-      workbox: {
-        globDirectory: 'dist',
-        globPatterns: [
-          '**/*.{js,css,svg,png,jpg,jpeg,gif,webp,woff,woff2,ttf,eot,ico}',
+      manifest: {
+        name: 'Astro PWA',
+        short_name: 'Astro PWA',
+        theme_color: '#FFFFFF',
+        icons: [
+          {
+            src: 'pwa-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: 'pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+          {
+            src: 'pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable',
+          },
         ],
-        // Don't fallback on document based (e.g. `/some-page`) requests
-        // This removes an errant console.log message from showing up.
-        navigateFallback: null,
+      },
+      workbox: {
+        navigateFallback: '/',
+        globPatterns: ['**/*.{css,js,html,svg,png,ico,txt}'],
+      },
+      devOptions: {
+        enabled: true,
+        navigateFallbackAllowlist: [/^\//],
+      },
+      experimental: {
+        directoryAndTrailingSlashHandler: true,
       },
     }),
     tailwind(),

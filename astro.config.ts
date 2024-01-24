@@ -2,20 +2,20 @@ import { defineConfig } from 'astro/config';
 
 // Astro integration imports
 import vue from '@astrojs/vue';
+import AstroPWA from '@vite-pwa/astro';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import compress from 'astro-compress';
-import { VitePWA } from 'vite-plugin-pwa';
 
 // Helper imports
 import { manifest, seoConfig } from './utils/seoConfig';
 
 export default defineConfig({
   site: seoConfig.baseURL,
-  integrations: [vue(), tailwind(), sitemap(), compress()],
+  integrations: [vue(), AstroPWA(), tailwind(), sitemap(), compress()],
   vite: {
     plugins: [
-      VitePWA({
+      AstroPWA({
         registerType: 'autoUpdate',
         manifest,
         workbox: {

@@ -17,6 +17,7 @@
     "@astrojs/vue": "^4.0.8",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.19.1",
+    "@vite-pwa/astro": "^0.2.0",
     "astro": "4.2.3",
     "astro-compress": "^2.2.8",
     "astro-seo": "^0.8.0",
@@ -27,7 +28,6 @@
     "prettier": "^3.2.4",
     "prettier-plugin-astro": "^0.13.0",
     "prettier-plugin-tailwindcss": "^0.5.11",
-    "typescript": "^5.3.3",
-    "vite-plugin-pwa": "^0.17.4"
+    "typescript": "^5.3.3"
   }
 }

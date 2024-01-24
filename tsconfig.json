@@ -12,10 +12,8 @@
     "paths": {
       "@component/*": ["src/module/components/*"],
       "@layout/*": ["src/module/layouts/*"],
-      "@font/*": ["src/assets/fonts/*"],
-      "@style/*": ["src/assets/styles/*"],
       "@img/*": ["src/assets/img/*"],
-      "@icon/*": ["src/assets/svg/icon/*"],
+      "@icon/*": ["src/assets/icons/*"],
       "@util/*": ["utils/*"],
     },
   },

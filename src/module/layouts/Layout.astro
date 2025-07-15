@@ -142,7 +142,9 @@ const { title } = Astro.props;
     <script src="/src/pwa.ts"></script>
   </head>
 
-  <body class="font-lexend-deca h-screen">
-    <slot />
+  <body class="font-lexend-deca">
+    <div class="flex flex-col min-h-screen">
+      <slot />
+    </div>
   </body></html
 >
